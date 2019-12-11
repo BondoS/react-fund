@@ -1,5 +1,6 @@
 import { put } from 'redux-saga/effects';
-import consumers from '../../utils/data';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
+import getConsumers from '../../services/consumers';
 import {
   consumerImportFail,
   consumerImportSuccess,
@@ -9,14 +10,14 @@ import {
 /* eslint-disable */
 export function* consumersImportSage() {
   try {
+    yield put(showLoading());
     yield put(consumerImportStart());
-    const res = yield new Promise(resolve => {
-      setTimeout(() => resolve(consumers), 1000);
-    });
-    yield console.log(res);
+    const res = yield getConsumers();
     yield put(consumerImportSuccess(res));
+    yield put(hideLoading());
   } catch (error) {
     console.log(error);
     yield put(consumerImportFail(error));
+    yield put(hideLoading());
   }
 }
