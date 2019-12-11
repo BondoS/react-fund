@@ -1,5 +1,5 @@
 import { put } from 'redux-saga/effects';
-import consumers from '../../utils/data';
+import getConsumers from '../../services/consumers';
 import {
   consumerImportFail,
   consumerImportSuccess,
@@ -10,10 +10,7 @@ import {
 export function* consumersImportSage() {
   try {
     yield put(consumerImportStart());
-    const res = yield new Promise(resolve => {
-      setTimeout(() => resolve(consumers), 1000);
-    });
-    yield console.log(res);
+    const res = yield getConsumers();
     yield put(consumerImportSuccess(res));
   } catch (error) {
     console.log(error);
