@@ -1,23 +1,13 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { consumerImportInitiate } from '../../store/actions/actionCreator';
+import React from 'react';
+import Consumers from '../consumers/consumers';
 
 function Main() {
-  const consumersList = useSelector(state => state.consumers);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(consumerImportInitiate());
-    // return () => {
-    //   cleanup
-    // };
-  }, [dispatch]);
-
   return (
     <div>
-      {consumersList.map(element => {
-        return <div>{element.name}</div>;
-      })}
+      <span role="img" aria-label="rocket">
+        🚀
+      </span>
+      <Consumers />
     </div>
   );
 }

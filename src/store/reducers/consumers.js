@@ -1,6 +1,7 @@
 import { CONSUMERS_IMPORT_SUCCESS } from '../actions/actions';
+import normalize from '../../utils/normalize';
 
-const initialConsumers = [
+const initialConsumers = normalize([
   {
     id: 1,
     name: 'Martian Firma',
@@ -16,7 +17,7 @@ const initialConsumers = [
     budget_spent: 451.3754,
     date_of_first_purchase: '2120-01-14'
   }
-];
+]);
 
 const reducer = (state = initialConsumers, action) => {
   switch (action.type) {
