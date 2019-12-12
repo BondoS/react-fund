@@ -4,14 +4,14 @@ import normalize from '../../utils/normalize';
 const initialConsumers = normalize([
   {
     id: 1,
-    name: 'Martian Firma',
+    name: 'Loading...',
     budget: 10000.0,
     budget_spent: 4500.0,
     date_of_first_purchase: '2119-07-07'
   },
   {
     id: 2,
-    name: 'Solar Firma',
+    name: 'Loading...',
     // eslint-disable-next-line
     budget: 1123.22,
     budget_spent: 451.3754,
