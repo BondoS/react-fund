@@ -1,4 +1,4 @@
-import { CONSUMERS_IMPORT_SUCCESS } from '../actions/actions';
+import { CONSUMERS_IMPORT_SUCCESS, CONSUMERS_UPDATE } from '../actions/actions';
 import normalize from '../../utils/normalize';
 
 const initialConsumers = normalize([
@@ -23,7 +23,16 @@ const reducer = (state = initialConsumers, action) => {
   switch (action.type) {
     case CONSUMERS_IMPORT_SUCCESS:
       return action.consumers;
-
+    case CONSUMERS_UPDATE:
+      return state.map(item => {
+        if (item.id === action.id) {
+          return {
+            ...item,
+            total: +action.budget
+          };
+        }
+        return item;
+      });
     default:
       return state;
   }

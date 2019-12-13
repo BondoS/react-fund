@@ -3,6 +3,7 @@ import {
   CONSUMERS_IMPORT_FAIL,
   CONSUMERS_IMPORT_INITIATE,
   CONSUMERS_IMPORT_START,
+  CONSUMERS_UPDATE,
   MODAL_SHOW,
   MODAL_HIDE
 } from './actions';
@@ -29,6 +30,13 @@ export const consumerImportFail = error => {
   };
 };
 
+export const consumerUpdate = (id, budget) => {
+  return {
+    type: CONSUMERS_UPDATE,
+    id,
+    budget
+  };
+};
 export const modalShow = payload => {
   return {
     type: MODAL_SHOW,

@@ -4,7 +4,8 @@ import Consumer from '../consumer/consumer';
 import {
   consumerImportInitiate,
   modalShow,
-  modalHide
+  modalHide,
+  consumerUpdate
 } from '../../store/actions/actionCreator';
 import Modal from '../modal/modal';
 import Form from '../form/form';
@@ -28,7 +29,12 @@ function Consumers() {
       })
     );
   };
-
+  const consumerUpdateHandler = (consumerId, budget) => {
+    setTimeout(() => {
+      dispatch(consumerUpdate(consumerId, budget));
+      dispatch(modalHide());
+    }, 2500);
+  };
   const modalHideHandler = () => {
     dispatch(modalHide());
   };
@@ -65,6 +71,7 @@ function Consumers() {
             name={name}
             total={total}
             spent={spent}
+            update={consumerUpdateHandler}
           />
         </Modal>
       )}
