@@ -5,31 +5,25 @@ import ReactDOM from 'react-dom';
 import classes from './modal.module.scss';
 import { modalHide } from '../../store/actions/actionCreator';
 
-function Modal(props) {
+function Modal({ id, close, children }) {
   const el = document.createElement('div');
   const modalRoot = document.getElementById('modal-root');
   const dispatch = useDispatch();
 
   el.className = classes.modal;
 
-  const escapeClicked = e => {
-    if (e.keyCode === 27) {
-      dispatch(modalHide());
-    }
-  };
-
   useEffect(() => {
     modalRoot.appendChild(el);
-    document.addEventListener('keydown', escapeClicked, false);
+    document.addEventListener('keydown', close, false);
 
     return () => {
       modalRoot.removeChild(el);
-      document.removeEventListener('keydown', escapeClicked, false);
+      document.removeEventListener('keydown', close, false);
       dispatch(modalHide());
     };
-  }, [props.id]);
+  }, [id]);
 
-  return ReactDOM.createPortal(props.children, el);
+  return ReactDOM.createPortal(children, el);
 }
 
 Modal.propTypes = {

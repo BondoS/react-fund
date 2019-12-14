@@ -38,6 +38,11 @@ function Consumers() {
   const modalHideHandler = () => {
     dispatch(modalHide());
   };
+  const escapeHandle = e => {
+    if (e.keyCode === 27) {
+      dispatch(modalHide());
+    }
+  };
 
   useEffect(() => {
     dispatch(consumerImportInitiate());
@@ -64,7 +69,7 @@ function Consumers() {
         );
       })}
       {show && (
-        <Modal id={id}>
+        <Modal id={id} close={escapeHandle}>
           <Form
             id={id}
             modalHideHandler={modalHideHandler}
