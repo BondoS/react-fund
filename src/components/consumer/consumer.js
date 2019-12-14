@@ -11,7 +11,7 @@ function Consumer({ modalShowHandler, id, name, date, total, spent, left }) {
       onClick={() => modalShowHandler(id)}
     >
       <div>
-        <span className={classes.label}>Company Name : </span>
+        <span className={classes.label}>Company : </span>
         <span>{name}</span>
       </div>
       <div>

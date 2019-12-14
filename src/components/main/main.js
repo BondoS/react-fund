@@ -4,7 +4,11 @@ import Consumers from '../consumers/consumers';
 function Main() {
   return (
     <div>
-      <span role="img" aria-label="rocket">
+      <span
+        style={{ margin: '7px', display: 'block' }}
+        role="img"
+        aria-label="rocket"
+      >
         🚀
       </span>
       <Consumers />
