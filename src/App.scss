@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+  &:after {
+    content: '';
+    background-image: url(./assets/2600-mars.jpg);
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

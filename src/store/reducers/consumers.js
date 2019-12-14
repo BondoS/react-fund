@@ -1,0 +1,41 @@
+import { CONSUMERS_IMPORT_SUCCESS, CONSUMERS_UPDATE } from '../actions/actions';
+import normalize from '../../utils/normalize';
+
+const initialConsumers = normalize([
+  {
+    id: 1,
+    name: 'Loading...',
+    budget: 10000.0,
+    budget_spent: 4500.0,
+    date_of_first_purchase: '2119-07-07'
+  },
+  {
+    id: 2,
+    name: 'Loading...',
+    // eslint-disable-next-line
+    budget: 1123.22,
+    budget_spent: 451.3754,
+    date_of_first_purchase: '2120-01-14'
+  }
+]);
+
+const reducer = (state = initialConsumers, action) => {
+  switch (action.type) {
+    case CONSUMERS_IMPORT_SUCCESS:
+      return action.consumers;
+    case CONSUMERS_UPDATE:
+      return state.map(item => {
+        if (item.id === action.id) {
+          return {
+            ...item,
+            total: +action.budget
+          };
+        }
+        return item;
+      });
+    default:
+      return state;
+  }
+};
+
+export default reducer;

@@ -1,0 +1,15 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(103, 99, 99, 0.5);
+  padding: 20px;
+  z-index: 99;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.close {
+  font-weight: bold;
+}
