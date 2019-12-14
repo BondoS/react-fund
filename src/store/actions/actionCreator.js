@@ -2,7 +2,10 @@ import {
   CONSUMERS_IMPORT_SUCCESS,
   CONSUMERS_IMPORT_FAIL,
   CONSUMERS_IMPORT_INITIATE,
-  CONSUMERS_IMPORT_START
+  CONSUMERS_IMPORT_START,
+  CONSUMERS_UPDATE,
+  MODAL_SHOW,
+  MODAL_HIDE
 } from './actions';
 
 export const consumerImportInitiate = () => {
@@ -24,5 +27,30 @@ export const consumerImportFail = error => {
   return {
     type: CONSUMERS_IMPORT_FAIL,
     error
+  };
+};
+
+export const consumerUpdate = (id, budget) => {
+  return {
+    type: CONSUMERS_UPDATE,
+    id,
+    budget
+  };
+};
+export const modalShow = payload => {
+  return {
+    type: MODAL_SHOW,
+    show: true,
+    id: payload.id,
+    name: payload.name,
+    total: payload.total,
+    spent: payload.spent
+  };
+};
+
+export const modalHide = () => {
+  return {
+    type: MODAL_HIDE,
+    show: false
   };
 };

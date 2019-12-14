@@ -4,7 +4,8 @@ import getConsumers from '../../services/consumers';
 import {
   consumerImportFail,
   consumerImportSuccess,
-  consumerImportStart
+  consumerImportStart,
+  modalHide
 } from '../actions/actionCreator';
 
 /* eslint-disable */
@@ -14,10 +15,12 @@ export function* consumersImportSage() {
     yield put(consumerImportStart());
     const res = yield getConsumers();
     yield put(consumerImportSuccess(res));
+    yield put(modalHide());
     yield put(hideLoading());
   } catch (error) {
     console.log(error);
     yield put(consumerImportFail(error));
+    yield put(modalHide());
     yield put(hideLoading());
   }
 }

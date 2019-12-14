@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as classes from './consumer.module.scss';
+import germanFormat from '../../utils/format';
 
-function Consumer({ id, name, date, total, spent, left }) {
+function Consumer({ modalShowHandler, id, name, date, total, spent, left }) {
   return (
-    <div className={classes.outer}>
+    <button
+      className={classes.outer}
+      type="button"
+      onClick={() => modalShowHandler(id)}
+    >
       <div>
         <span className={classes.label}>Company Name : </span>
         <span>{name}</span>
@@ -15,17 +20,17 @@ function Consumer({ id, name, date, total, spent, left }) {
       </div>
       <div>
         <span className={classes.label}>Total budget : </span>
-        <span>{total}</span>
+        <span>{germanFormat(total)}</span>
       </div>
       <div>
         <span className={classes.label}>Budget spent : </span>
-        <span>{spent}</span>
+        <span>{germanFormat(spent)}</span>
       </div>
       <div>
         <span className={classes.label}>Budget left : </span>
-        <span>{left}</span>
+        <span>{germanFormat(left)}</span>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -33,18 +38,20 @@ Consumer.propTypes = {
   id: PropTypes.number,
   name: PropTypes.string,
   date: PropTypes.string,
-  total: PropTypes.string,
-  spent: PropTypes.string,
-  left: PropTypes.string
+  total: PropTypes.number,
+  spent: PropTypes.number,
+  left: PropTypes.number,
+  modalShowHandler: PropTypes.func
 };
 
 Consumer.defaultProps = {
   id: 0,
   name: '',
   date: '',
-  total: '',
-  spent: '',
-  left: ''
+  total: 0,
+  spent: 0,
+  left: 0,
+  modalShowHandler: () => {}
 };
 
 export default Consumer;
