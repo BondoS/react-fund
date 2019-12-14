@@ -35,22 +35,34 @@ function Form({ id, modalHideHandler, total, name, spent, update }) {
     <form className={classes.fundForm} onSubmit={handleSubmit}>
       <div />
       <div>
-        <button type="button" onClick={() => modalHideHandler()}>
-          Close
-        </button>
+        <button
+          type="button"
+          className={classes.close}
+          aria-label="close"
+          onClick={() => modalHideHandler()}
+        />
       </div>
-      <div>
-        Company Name: <span>{name}</span>
+      <h5>
+        Company: <span>{name}</span>
+      </h5>
+      <div className={[classes['custom-input'], classes.input].join(' ')}>
+        <input
+          id="budgetInput"
+          disabled={isSubmitted}
+          min={spent}
+          value={input}
+          onChange={e => handleInput(e.target.value)}
+        />
+        <label htmlFor="budgetInput">Budget</label>
+        <div className={classes.notValid}>
+          {!valid && `Total budget should not be less than ${spent}`}
+        </div>
+        <div className={classes.updating}>
+          {isSubmitted && `Updating your budget...`}
+        </div>
       </div>
-      <input
-        disabled={isSubmitted}
-        min={spent}
-        value={input}
-        onChange={e => handleInput(e.target.value)}
-      />
-      <div>{!valid && `Total budget should not be less than ${spent}`}</div>
-      <div>{isSubmitted && `Updating your budget...`}</div>
-      <button type="submit" disabled={!valid}>
+
+      <button className={classes.submit} type="submit" disabled={!valid}>
         save
       </button>
     </form>
